@@ -13,6 +13,7 @@ import com.varta.repo.EnrichmentRepo;
 import com.varta.repo.ItemRepo;
 import com.varta.repo.MetricsRepo;
 import com.varta.util.Hashing;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -22,16 +23,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class IngestService {
     private final ItemRepo items;
     private final EnrichmentRepo enrich;
     private final MetricsRepo metrics;
-
-    public IngestService(ItemRepo items, EnrichmentRepo enrich, MetricsRepo metrics) {
-        this.items = items;
-        this.enrich = enrich;
-        this.metrics = metrics;
-    }
 
     public record Result(int itemsUpserted, int enrichmentsUpserted, int metricsUpserted) {
     }

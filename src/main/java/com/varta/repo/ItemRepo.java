@@ -33,7 +33,8 @@ public class ItemRepo {
     }
 
     public Optional<Item> findByUrlHash(String urlHash) {
-        return Optional.ofNullable(byId.get(byUrlHash.get(urlHash)));
+        var itemId = byUrlHash.get(urlHash);
+        return itemId == null ? Optional.empty() : Optional.ofNullable(byId.get(itemId));
     }
 
     public long count() {
